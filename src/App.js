@@ -1,15 +1,8 @@
 import React from 'react';
 import { Counter } from './features/counter/Counter';
 import SecondImpact from './pages/second_impact/SecondImpact';
-import PotCook from './pages/pot_cook/potCook';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
-import './App.css';
+import Sheet from './pages/char_sheet/sheet';
+import './App.scss';
 
 const NavBar = props => {
   return (
@@ -32,22 +25,9 @@ const NavBar = props => {
 
 const App = () => {
   return (
-    <>
-      <Router>
-        <NavBar />
-        <Switch>
-          <Route path="/second-impact">
-            <SecondImpact />
-          </Route>
-          <Route path="/pot-cook">
-            <PotCook />
-          </Route>
-          <Route path="/life-planner">
-            <SecondImpact />
-          </Route>
-        </Switch>
-      </Router>
-    </>
+    <div>
+      <Sheet/>
+    </div>
   );
 }
 
