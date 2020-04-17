@@ -7,7 +7,7 @@ export const slice = createSlice({
       nv: 30000,
       eb: 10000
     },
-  },
+  },  
   reducers: {
     incrementByAmount: (state, action) => {
       let payload = action.payload;
