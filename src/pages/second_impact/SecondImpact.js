@@ -22,8 +22,6 @@ const Content = () => {
       <InputPanel />
       <DisplayPanel />
     </div>
-
-
   )
 }
 
@@ -67,7 +65,7 @@ const DisplayPanel = () => {
   const eb = useSelector(ebSavings);
   return (
     <Card style={{ width: 500, marginLeft: 44, marginTop: 8 }}>
-      <Row style={{ display: "flex", justifyContent: "space-around" }}>
+      <Row style={{ display: "flex", justifyContent: "space-between" }}>
         <Col>
         <Statistic title="Nicolás" value={nv} />
         </Col>
