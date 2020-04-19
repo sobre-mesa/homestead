@@ -4,8 +4,13 @@
   width: 600px;
   border-radius: 20px;
   margin: 100px auto;
+  justify-content: center;
+}
 
-  h1{
-    color: red;
-  }
+.title-row{
+  justify-content: center;
+  padding-top: 20px;
+  .title {
+    color: white;
+  }    
 }
