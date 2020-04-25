@@ -9,7 +9,8 @@ import {
   Link
 } from "react-router-dom";
 
-import './App.css';
+import Sheet from './pages/char_sheet/sheet';
+import './App.scss';
 
 const NavBar = props => {
   return (
@@ -24,7 +25,7 @@ const NavBar = props => {
           <Link to="/second-impact">Second Impact</Link>
         </li>
         <li>
-          <Link to="/life-planner">Life Planner</Link>
+          <Link to="/character-sheet">Life Planner</Link>
         </li>
       </ul>
   )
@@ -42,8 +43,11 @@ const App = () => {
           <Route path="/pot-cook">
             <PotCook />
           </Route>
-          <Route path="/life-planner">
-            <SecondImpact />
+          <Route path="/character-sheet">
+            <Sheet />
+          </Route>
+          <Route path="/">
+            <h1>Idk lol </h1>
           </Route>
         </Switch>
       </Router>
