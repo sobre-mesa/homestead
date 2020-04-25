@@ -2,13 +2,52 @@ import React from 'react';
 import { Counter } from './features/counter/Counter';
 import SecondImpact from './pages/second_impact/SecondImpact';
 import PotCook from './pages/pot_cook/potCook';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import './App.css';
 
-function App() {
+const NavBar = props => {
   return (
-    <div>
-      <PotCook/>
-    </div>
+      <ul className="nav-bar">
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/pot-cook">Pot Cook</Link>
+        </li>
+        <li>
+          <Link to="/second-impact">Second Impact</Link>
+        </li>
+        <li>
+          <Link to="/life-planner">Life Planner</Link>
+        </li>
+      </ul>
+  )
+}
+
+const App = () => {
+  return (
+    <>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path="/second-impact">
+            <SecondImpact />
+          </Route>
+          <Route path="/pot-cook">
+            <PotCook />
+          </Route>
+          <Route path="/life-planner">
+            <SecondImpact />
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
