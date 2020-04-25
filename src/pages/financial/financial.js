@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { PageHeader, Row, Col, InputNumber, Card, Typography, Statistic } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { incrementByAmount, decrementByAmount, nvSavings, ebSavings } from './impactSlice';
+import { incrementByAmount, decrementByAmount, nvSavings, ebSavings } from './financialSlice';
 
-const SecondImpact = () => {
+const Financial = () => {
 
   return (
     <div>
@@ -77,4 +77,4 @@ const DisplayPanel = () => {
   )
 }
 
-export default SecondImpact;
+export default Financial;
