@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Typography } from 'antd';
 const { Title } = Typography;
 
-const Sheet = () => {
+const Rpg = () => {
   return (
     <div className="character-sheet">
       <Row className="title-row">
@@ -43,4 +43,4 @@ const StatPair = ([name, value]) => {
 }
 
 
-export default Sheet;
+export default Rpg;
