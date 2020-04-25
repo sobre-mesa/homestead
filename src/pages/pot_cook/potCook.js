@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tooltip, Progress } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { set, decrement, selectTotal, selectSecs } from './cookSlice';
+import { decrement, selectTotal, selectSecs } from './cookSlice';
 
 const PotCook = () => {
   const dispatch = useDispatch();

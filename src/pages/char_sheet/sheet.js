@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { PageHeader, Row, Col, InputNumber, Card, Typography } from 'antd';
-const { Title, Text } = Typography;
+import React from 'react';
+import { Row, Col, Typography } from 'antd';
+const { Title } = Typography;
 
 const Sheet = () => {
   return (
