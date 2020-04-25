@@ -11,19 +11,19 @@ export const slice = createSlice({
   reducers: {
     incrementByAmount: (state, action) => {
       let payload = action.payload;
-      if(payload.account == "nv"){
+      if(payload.account === "nv"){
         state.savings.nv += payload.amount;
       }
-      else if(payload.account == "eb"){
+      else if(payload.account === "eb"){
         state.savings.eb += payload.amount;
       }
     },
     decrementByAmount: (state, action) => {
       let payload = action.payload;
-      if(payload.account == "nv"){
+      if(payload.account === "nv"){
         state.savings.nv -= payload.amount;
       }
-      else if(payload.account == "eb"){
+      else if(payload.account === "eb"){
         state.savings.eb -= payload.amount;
       }
     },
