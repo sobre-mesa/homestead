@@ -1,5 +1,4 @@
 import './App.scss';
-
 import React from 'react';
 import { Link, Switch, Route, BrowserRouter } from "react-router-dom";
 import Tab from '@material-ui/core/Tab';

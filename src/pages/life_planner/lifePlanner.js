@@ -1,6 +1,12 @@
 import React from 'react';
 // import {} from './lifePlannerSlice';
-import DefaultCard from './components/card';
+import SectionCard from './components/card';
 
-const LifePlanner = () => <DefaultCard></DefaultCard>
+const LifePlanner = () => {
+  return (
+    <div className="page__life-planner">
+      <SectionCard {...{title: "Test"}} />
+    </div>
+  )
+}
 export default LifePlanner;

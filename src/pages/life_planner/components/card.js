@@ -8,46 +8,74 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    height: 400,
+    width: 500,
+    backgroundColor: '#cee0d7',
   },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
     transform: 'scale(0.8)',
   },
-  title: {
-    fontSize: 14,
-  },
+  // title: {
+  //   fontSize: 20,
+  //   color: 'white',
+  //   fontWeight: 'bolder'
+  // },
   pos: {
     marginBottom: 12,
   },
 });
 
-export default function DefaultCard() {
+function CardWrapper(props) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
+  const customClass = props.class ? props.class : '';
   return (
-    <Card className={classes.root}>
+    <Card className={`${classes.root} ${customClass}`}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
+        {props.children}
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }
+
+
+function Title({ text }) {
+  const classes = useStyles();
+  return (<>
+    <Typography
+      variant="h3"
+      component="h2"
+      className={classes.
+        title}
+      color="textSecondary"
+      gutterBottom>
+      {text}
+    </Typography>
+
+  </>)
+}
+
+function Description({ text }) {
+
+}
+
+export default function SectionCard({ title }) {
+  return (
+    <CardWrapper>
+      <Title text={title} />
+    </CardWrapper>
+  )
+}
+
+{/* <Typography " component="h2">
+be{bull}nev{bull}o{bull}lent
+</Typography>
+<Typography className={classes.pos} color="textSecondary">
+adjective
+</Typography>
+<Typography variant="body2" component="p">
+well meaning and kindly.
+<br />
+{'"a benevolent smile"'}
+</Typography> */}
