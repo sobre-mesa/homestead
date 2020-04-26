@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function SectionCard({ name, image, description, children, type, contains }) {
+export default function SectionCard({ name, image, description, children}) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -34,10 +34,10 @@ export default function SectionCard({ name, image, description, children, type, 
           </Typography>
         </CardContent>
       </CardActionArea>
-      {contains &&
+      {children.length > 0 &&
         <CardActions>
           <Button size="small" color="primary">
-            See {contains} ({children.length})
+           Expand (Contains {children.length} items)
           </Button>
           </CardActions>
         }

@@ -14,12 +14,17 @@ let webDev = {
 }
 
 let philosophy = {
-  depth: 0,
+  depth: 1,
   name: "Philosophy",
   description: "Never let the future disturb you. You will meet it, if you have to, with the same weapons of reason which today arm you against the present .Everything related to philosophy.",
   image: "https://i.imgur.com/tGeep1V.jpg",
   children
 }
 
-const Sections = [webDev, philosophy, webDev, philosophy, webDev, philosophy, webDev, philosophy, webDev, philosophy];
-export default Sections;
+const sections = [webDev, philosophy, webDev, philosophy, webDev, philosophy, webDev, philosophy, webDev, philosophy];
+const RootContainment = {
+  name: "Areas",
+  depth: 0,
+  children: sections
+}
+export default RootContainment;
