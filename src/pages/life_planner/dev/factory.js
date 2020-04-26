@@ -21,5 +21,5 @@ let philosophy = {
   children
 }
 
-const Sections = [webDev, philosophy];
+const Sections = [webDev, philosophy, webDev, philosophy, webDev, philosophy, webDev, philosophy, webDev, philosophy];
 export default Sections;

@@ -9,9 +9,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
   media: {
     height: 250,
   },
