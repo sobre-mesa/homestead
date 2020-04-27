@@ -9,9 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-  media: {
-    height: 250,
-  },
+  media: { height: 250 },
 });
 
 
@@ -34,7 +32,7 @@ export default function SectionCard({ name, image, description, children}) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      {children.length > 0 &&
+      {(children && children.length > 0) &&
         <CardActions>
           <Button size="small" color="primary">
            Expand (Contains {children.length} items)

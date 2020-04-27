@@ -22,7 +22,6 @@ const paperStyle = {
   marginRight: 'auto',
 };
 
-
 const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
@@ -37,7 +36,7 @@ const getCardFromItem = x => {
     </Grid>);
 }
 
-const ExpandedContainment = ({name, children}) => {
+const ExpandedContainer = ({name, children}) => {
   let cards = children.map(getCardFromItem);
   let classes = useStyles();
   return (
@@ -53,4 +52,4 @@ const ExpandedContainment = ({name, children}) => {
   );
 }
 
-export default ExpandedContainment;
+export default ExpandedContainer;

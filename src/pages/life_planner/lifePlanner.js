@@ -1,8 +1,8 @@
 import React from 'react';
-import ExpandedContainment from './components/expanded'
-import RootContainment from './dev/factory';
+import ExpandedContainer from './components/expanded'
+import RootContainer from './dev/factory';
 
 const LifePlanner = () => {
-return <ExpandedContainment {...RootContainment}/>
+return <ExpandedContainer {...RootContainer}/>
 }
 export default LifePlanner;
