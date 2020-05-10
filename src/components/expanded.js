@@ -37,7 +37,7 @@ const getCardFromItem = x => {
 }
 
 const ExpandedContainer = ({name, children}) => {
-  let cards = children.map(getCardFromItem);
+  let cards = children && children.map(getCardFromItem);
   let classes = useStyles();
   return (
     <>
