@@ -1,25 +1,40 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ExpandedContainer from './components/expanded'
+import { getContainer, setContainer } from './store/plannerSlice'
+import store from './store/store';
 
-const LifePlanner = () => {
-  let [container, setContainer] = useState();
+class LifePlanner extends React.Component {
 
-  fetch("/lp", { mode: 'cors' }).then(
-    function (response) {
+  constructor() {
+    super();
+    this.state = { container: {} }
+  }
+
+  componentDidMount() {
+    fetch("/lp/top-layer", { mode: 'cors' }).then((response) => {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
           response.status);
         return;
       }
-      response.json().then(function (data) {
-        console.log(data.data.containers)
-        setContainer({name: "Root Container", chldren: data.data.containers})
-        console.log(container)
+      response.json().then((data) => {
+        store.dispatch(setContainer({ name: "Root Container", children: data.data.containers }));
+        this.setState({ container: getContainer(store.getState()) })
       });
     }
-  ).catch(function (err) {
-    console.log('Fetch Error :-S', err);
-  });
-  return <ExpandedContainer {...container} />
+    ).catch(function (err) {
+      console.log('Fetch Error :-S', err);
+    });
+  }
+
+  render() {
+    let c = this.state.container;
+    if (c.name) {
+      return <ExpandedContainer {...c} />
+    }
+    return <h1>Loading</h1>;
+
+  }
+
 }
 export default LifePlanner;

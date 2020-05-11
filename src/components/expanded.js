@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -7,6 +7,9 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 
 import SectionCard from './imageCard';
+
+import store from '../store/store';
+import { getContainer, setContainer } from '../store/plannerSlice'
 
 const gridStyle = {
   width: '65%',
@@ -31,14 +34,14 @@ const useStyles = makeStyles(theme => ({
 
 const getCardFromItem = x => {
   return (
-    <Grid item xs={6}>
-      <SectionCard {...x}/>
+    <Grid key={x.id} item xs={6}>
+      <SectionCard {...x} />
     </Grid>);
 }
 
-const ExpandedContainer = ({name, children}) => {
-  let cards = children && children.map(getCardFromItem);
+const ExpandedContainer = ({ name, children }) => {
   let classes = useStyles();
+  let cards = children && children.map(getCardFromItem);
   return (
     <>
       <Paper elevation={15} style={paperStyle}>

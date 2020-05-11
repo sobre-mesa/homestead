@@ -13,16 +13,17 @@ const useStyles = makeStyles({
 });
 
 
-export default function SectionCard({ name, image, description, children}) {
+export default function SectionCard({ name, image, description, children }, ) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={image}
-          title="Contemplative Reptile"
-        />
+        {image &&
+          <CardMedia
+            className={classes.media}
+            image={image}
+            title="Contemplative Reptile"
+          />}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {name}
@@ -35,10 +36,10 @@ export default function SectionCard({ name, image, description, children}) {
       {(children && children.length > 0) &&
         <CardActions>
           <Button size="small" color="primary">
-           Expand (Contains {children.length} items)
+            Expand (Contains {children.length} items)
           </Button>
-          </CardActions>
-        }
+        </CardActions>
+      }
     </Card>
   );
 }

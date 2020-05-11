@@ -1,7 +1,7 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// export default configureStore({
-//   reducer: {
-//     secondImpact: impactReducer,
-//     potcook: cookReducer
-//   },
-// });
+import { configureStore } from '@reduxjs/toolkit';
+import plannerSlice from './plannerSlice'
+export default configureStore({
+  reducer: {
+    containers: plannerSlice,
+  },
+});

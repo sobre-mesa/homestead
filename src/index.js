@@ -6,9 +6,9 @@ import { Provider } from 'react-redux';
 import LifePlanner from './lifePlanner';
 
 ReactDOM.render(
-  // <Provider store={store}>
+  <Provider store={store}>
     <LifePlanner />
-  // </Provider>
+  </Provider>
   ,
   document.getElementById('root')
 );
