@@ -1,19 +1,23 @@
 import React from 'react';
 import ExpandedContainer from './components/expanded'
-import { getContainer, setContainer } from './store/plannerSlice'
-import { useDispatch, connect } from 'react-redux';
+import { currentContainer, containerSelected, currentBreadCrumbs, breadCrumbSelected } from './store/plannerSlice'
+import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    openContainer: getContainer(state)
+    openContainer: currentContainer(state),
+    currentBreadCrumbs: currentBreadCrumbs(state)
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setContainer: c => {
-      dispatch(setContainer(c))
-    }
+    containerSelected: c => {
+      dispatch(containerSelected(c))
+    },
+    breadCrumbSelected: c => {
+      dispatch(breadCrumbSelected(c))
+    },
   }
 }
 
@@ -30,7 +34,7 @@ class LifePlanner extends React.Component {
         return;
       }
       response.json().then((data) => {
-        this.props.setContainer({ name: "Root Container", children: data.data.containers });
+        this.props.containerSelected({ name: "Home", children: data.data.children });
       })
     }
     ).catch(function (err) {
@@ -40,7 +44,10 @@ class LifePlanner extends React.Component {
 
   render() {
     if (this.props.openContainer.name) {
-      return <ExpandedContainer {...this.props.openContainer} updateContainer={this.props.setContainer} />
+      return <ExpandedContainer {...this.props.openContainer}
+        updateContainer={this.props.containerSelected}
+        breadcrumbs={this.props.currentBreadCrumbs}
+        updateBreadCrumbs={this.props.breadCrumbSelected}/>
     }
     return <h1>Loading</h1>;
 

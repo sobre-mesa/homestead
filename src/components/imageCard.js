@@ -13,18 +13,18 @@ const useStyles = makeStyles({
 });
 
 
-export default function SectionCard({ id, name, image, description, children, updateContainer}, ) {
+export default function SectionCard(props) {
   const classes = useStyles();
+  let { id, name, image, description, children, updateContainer} = props;
   let handleClick = () => {
-    fetch(`/lp?parent=${id}`, { mode: 'cors' }).then((response) => {
+    fetch(`/lp/id/${id}`, { mode: 'cors' }).then((response) => {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
           response.status);
         return;
       }
       response.json().then((data) => {
-        console.log(data.data)
-        updateContainer({ name, children: data.data.containers });
+        updateContainer({... data.data.container, children: data.data.children });
       })
     }
     ).catch(function (err) {

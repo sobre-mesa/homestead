@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -7,19 +7,18 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 
 import SectionCard from './imageCard';
-
-import store from '../store/store';
-import { getContainer, setContainer } from '../store/plannerSlice'
+import BreadCrumbs from './breadCrumbs'
 
 const gridStyle = {
   width: '65%',
   marginLeft: 'auto',
   marginRight: 'auto',
-  marginTop: 25
+  marginTop: 25,
+  height: 650
 };
 const paperStyle = {
   marginTop: 50,
-  paddingTop: 50,
+  padding: 50,
   width: '90%',
   marginLeft: 'auto',
   marginRight: 'auto',
@@ -33,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const ExpandedContainer = ({ name, children, updateContainer }) => {
+const ExpandedContainer = ({ name, children, updateContainer, breadcrumbs, updateBreadCrumbs}) => {
   let classes = useStyles();
   const getCardFromItem = x => {
     return (
@@ -41,12 +40,14 @@ const ExpandedContainer = ({ name, children, updateContainer }) => {
         <SectionCard {...x} updateContainer={updateContainer} />
       </Grid>);
   }
+  console.log("A VER", children)
   let cards = children && children.map(getCardFromItem);
 
   return (
     <>
       <Paper elevation={15} style={paperStyle}>
         <Typography variant="h2" color="textPrimary" gutterBottom className={classes.title}>{name}</Typography>
+        <BreadCrumbs breadcrumbs={breadcrumbs} updateBreadCrumbs={updateBreadCrumbs} updateContainer={updateContainer}/>
         <Divider variant="middle" className={classes.divider} />
         <Grid container spacing={6} style={gridStyle}>
           {cards}
