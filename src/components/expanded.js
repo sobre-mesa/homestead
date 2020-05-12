@@ -5,21 +5,23 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import SimpleModal from './modal'
 
 import SectionCard from './imageCard';
 import BreadCrumbs from './breadCrumbs'
 
 const gridStyle = {
-  width: '65%',
+  width: '100%',
   marginLeft: 'auto',
   marginRight: 'auto',
-  marginTop: 25,
-  height: 650
+  marginTop: 100,
+  minHeight: 500
 };
 const paperStyle = {
   marginTop: 50,
   padding: 50,
-  width: '90%',
+  width: '70%',
   marginLeft: 'auto',
   marginRight: 'auto',
 };
@@ -28,31 +30,58 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     textAlign: 'center',
+  },
+  notes: {
+    textAlign: 'center',
+    paddingLeft: 80,
+    paddingRight: 80,
+    paddingTop: 80,
+    paddingBottom: 12,
   }
 }));
 
 
-const ExpandedContainer = ({ name, children, updateContainer, breadcrumbs, updateBreadCrumbs}) => {
+const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs, updateBreadCrumbs, toggleModal, modalIsOpen, modalType}) => {
   let classes = useStyles();
   const getCardFromItem = x => {
     return (
-      <Grid key={x.id} item xs={6}>
+      <Grid key={x.id} item xs={4}>
         <SectionCard {...x} updateContainer={updateContainer} />
       </Grid>);
   }
-  console.log("A VER", children)
   let cards = children && children.map(getCardFromItem);
 
   return (
     <>
       <Paper elevation={15} style={paperStyle}>
-        <Typography variant="h2" color="textPrimary" gutterBottom className={classes.title}>{name}</Typography>
-        <BreadCrumbs breadcrumbs={breadcrumbs} updateBreadCrumbs={updateBreadCrumbs} updateContainer={updateContainer}/>
+        <Typography variant="h2" color="textPrimary" gutterBottom className={classes.title}>
+          {name}
+        </Typography>
+        <div style={{ display: "grid", gridTemplateColumns: 20, width: '100%', alignContent: "bottom" }}>
+          <div style={{ gridColumn: "1/10" }}>
+            <BreadCrumbs
+              breadcrumbs={breadcrumbs}
+              updateBreadCrumbs={updateBreadCrumbs}
+              updateContainer={updateContainer} />
+          </div>
+          <div style={{ paddingBottom: 24, gridColumn: 20, marginTop: -7 }}>
+            <Button variant="contained" color="primary" onClick={() => toggleModal("new")} style={{marginRight: 12}}>New Child Container</Button>
+    
+            <Button variant="contained" color="secondary" onClick={() => toggleModal("edit")}>Edit Container</Button>
+          </div>
+        </div>
         <Divider variant="middle" className={classes.divider} />
+        {notes &&
+          <div className={classes.notes}>
+            <Typography variant="span" color="textPrimary" gutterBottom >
+              {notes}
+            </Typography>
+          </div>}
         <Grid container spacing={6} style={gridStyle}>
           {cards}
         </Grid>
       </Paper>
+      <SimpleModal modalIsOpen={modalIsOpen} toggleModal={toggleModal} modalType={modalType}/>
     </>
   );
 }
