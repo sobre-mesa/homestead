@@ -1,13 +1,25 @@
 import React from 'react';
 import ExpandedContainer from './components/expanded'
 import { getContainer, setContainer } from './store/plannerSlice'
-import store from './store/store';
+import { useDispatch, connect } from 'react-redux';
+
+const mapStateToProps = state => {
+  return {
+    openContainer: getContainer(state)
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setContainer: c => {
+      dispatch(setContainer(c))
+    }
+  }
+}
 
 class LifePlanner extends React.Component {
-
   constructor() {
     super();
-    this.state = { container: {} }
   }
 
   componentDidMount() {
@@ -18,9 +30,8 @@ class LifePlanner extends React.Component {
         return;
       }
       response.json().then((data) => {
-        store.dispatch(setContainer({ name: "Root Container", children: data.data.containers }));
-        this.setState({ container: getContainer(store.getState()) })
-      });
+        this.props.setContainer({ name: "Root Container", children: data.data.containers });
+      })
     }
     ).catch(function (err) {
       console.log('Fetch Error :-S', err);
@@ -28,13 +39,12 @@ class LifePlanner extends React.Component {
   }
 
   render() {
-    let c = this.state.container;
-    if (c.name) {
-      return <ExpandedContainer {...c} />
+    if (this.props.openContainer.name) {
+      return <ExpandedContainer {...this.props.openContainer} updateContainer={this.props.setContainer} />
     }
     return <h1>Loading</h1>;
 
   }
-
 }
-export default LifePlanner;
+
+export default connect(mapStateToProps, mapDispatchToProps)(LifePlanner);

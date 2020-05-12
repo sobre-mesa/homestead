@@ -13,10 +13,26 @@ const useStyles = makeStyles({
 });
 
 
-export default function SectionCard({ name, image, description, children }, ) {
+export default function SectionCard({ id, name, image, description, children, updateContainer}, ) {
   const classes = useStyles();
+  let handleClick = () => {
+    fetch(`/lp?parent=${id}`, { mode: 'cors' }).then((response) => {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+      response.json().then((data) => {
+        console.log(data.data)
+        updateContainer({ name, children: data.data.containers });
+      })
+    }
+    ).catch(function (err) {
+      console.log('Fetch Error :-S', err);
+    });
+  }
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={handleClick}>
       <CardActionArea>
         {image &&
           <CardMedia

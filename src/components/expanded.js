@@ -32,16 +32,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const getCardFromItem = x => {
-  return (
-    <Grid key={x.id} item xs={6}>
-      <SectionCard {...x} />
-    </Grid>);
-}
 
-const ExpandedContainer = ({ name, children }) => {
+const ExpandedContainer = ({ name, children, updateContainer }) => {
   let classes = useStyles();
+  const getCardFromItem = x => {
+    return (
+      <Grid key={x.id} item xs={6}>
+        <SectionCard {...x} updateContainer={updateContainer} />
+      </Grid>);
+  }
   let cards = children && children.map(getCardFromItem);
+
   return (
     <>
       <Paper elevation={15} style={paperStyle}>
