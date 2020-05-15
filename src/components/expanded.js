@@ -7,6 +7,8 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import SimpleModal from './modal'
+import EditIcon from '@material-ui/icons/Edit';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import SectionCard from './imageCard';
 import BreadCrumbs from './breadCrumbs'
@@ -15,7 +17,7 @@ const gridStyle = {
   width: '100%',
   marginLeft: 'auto',
   marginRight: 'auto',
-  marginTop: 100,
+  // marginTop: 100,
   minHeight: 500
 };
 const paperStyle = {
@@ -35,13 +37,13 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     paddingLeft: 80,
     paddingRight: 80,
-    paddingTop: 80,
+    // paddingTop: 80,
     paddingBottom: 12,
   }
 }));
 
 
-const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs, updateBreadCrumbs, toggleModal, modalIsOpen, modalType}) => {
+const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs, updateBreadCrumbs, toggleModal, modalIsOpen, modalType }) => {
   let classes = useStyles();
   const getCardFromItem = x => {
     return (
@@ -57,20 +59,17 @@ const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs
         <Typography variant="h2" color="textPrimary" gutterBottom className={classes.title}>
           {name}
         </Typography>
+        <BreadCrumbs
+          breadcrumbs={breadcrumbs}
+          updateBreadCrumbs={updateBreadCrumbs}
+          updateContainer={updateContainer} />
+        <Divider variant="middle" className={classes.divider} />
         <div style={{ display: "grid", gridTemplateColumns: 20, width: '100%', alignContent: "bottom" }}>
-          <div style={{ gridColumn: "1/10" }}>
-            <BreadCrumbs
-              breadcrumbs={breadcrumbs}
-              updateBreadCrumbs={updateBreadCrumbs}
-              updateContainer={updateContainer} />
-          </div>
-          <div style={{ paddingBottom: 24, gridColumn: 20, marginTop: -7 }}>
-            <Button variant="contained" color="primary" onClick={() => toggleModal("new")} style={{marginRight: 12}}>New Child Container</Button>
-    
-            <Button variant="contained" color="secondary" onClick={() => toggleModal("edit")}>Edit Container</Button>
+          <div style={{ marginTop: 24, marginBottom: 24,  gridColumn: 20}}>
+            <Button variant="contained" color="primary" onClick={() => toggleModal("new")} style={{ marginRight: 12 }}><AddCircleIcon style={{paddingRight: 8}}/>Child</Button>
+            <Button variant="contained" color="secondary" onClick={() => toggleModal("edit")}><EditIcon/></Button>
           </div>
         </div>
-        <Divider variant="middle" className={classes.divider} />
         {notes &&
           <div className={classes.notes}>
             <Typography variant="span" color="textPrimary" gutterBottom >
@@ -81,7 +80,7 @@ const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs
           {cards}
         </Grid>
       </Paper>
-      <SimpleModal modalIsOpen={modalIsOpen} toggleModal={toggleModal} modalType={modalType}/>
+      <SimpleModal modalIsOpen={modalIsOpen} toggleModal={toggleModal} modalType={modalType} />
     </>
   );
 }
