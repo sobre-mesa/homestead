@@ -11,7 +11,7 @@ export default function BreadCumbs(props) {
     <Breadcrumbs aria-label="breadcrumb">
       {bc.map((x, i) =>
         <Link key={i} color="inherit" onClick={e => {
-            fetch(`/lp/${ i ==  0 ? "top-layer" : "id/" +  x.id}`, { mode: 'cors' }).then((response) => {
+            fetch(`/lp/${ i ===  0 ? "top-layer" : "id/" +  x.id}`, { mode: 'cors' }).then((response) => {
               if (response.status !== 200) {
                 console.log('Looks like there was a problem. Status Code: ' +
                   response.status);

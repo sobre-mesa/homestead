@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs, updateBreadCrumbs, toggleModal, modalIsOpen, modalType }) => {
+const ExpandedContainer = ({id, name, notes, children, updateContainer, breadcrumbs, updateBreadCrumbs, toggleModal, modalIsOpen, modalType }) => {
   let classes = useStyles();
   const getCardFromItem = x => {
     return (
@@ -65,7 +65,7 @@ const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs
         <div style={{ display: "grid", gridTemplateColumns: 20, width: '100%', alignContent: "bottom" }}>
           <div style={{ marginTop: 24, marginBottom: 24,  gridColumn: 20}}>
             <Button variant="contained" color="primary" onClick={() => toggleModal("new")} style={{ marginRight: 12 }}><AddCircleIcon style={{paddingRight: 8}}/>Child</Button>
-            <Button variant="contained" color="secondary" onClick={() => toggleModal("edit")}><EditIcon/></Button>
+            {id && <Button variant="contained" color="secondary" onClick={() => toggleModal("edit")}><EditIcon/></Button> }
           </div>
         </div>
         {notes &&
@@ -78,7 +78,7 @@ const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs
           {cards}
         </Grid>
       </Paper>
-      <EditOrNew modalIsOpen={modalIsOpen} toggleModal={toggleModal} />
+      <EditOrNew isEdit={modalType==="edit"} id={id} modalIsOpen={modalIsOpen} toggleModal={toggleModal} />
       </>
   );
 }

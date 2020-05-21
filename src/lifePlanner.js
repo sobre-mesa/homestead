@@ -27,9 +27,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 class LifePlanner extends React.Component {
-  constructor() {
-    super();
-  }
 
   componentDidMount() {
     fetch("/lp/top-layer", { mode: 'cors' }).then((response) => {
@@ -48,6 +45,7 @@ class LifePlanner extends React.Component {
   }
 
   render() {
+    console.log(this.props.openContainer);
     if (this.props.openContainer.name) {
       return <ExpandedContainer {...this.props.openContainer}
         updateContainer={this.props.containerSelected}

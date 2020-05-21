@@ -24,7 +24,7 @@ export default function SectionCard(props) {
         return;
       }
       response.json().then((data) => {
-        updateContainer({... data.data.container, children: data.data.children });
+        updateContainer({...data.data.container, children: data.data.children });
       })
     }
     ).catch(function (err) {

@@ -7,7 +7,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Typography from '@material-ui/core/Typography';
 
 import SimpleModal from './modal';
 
@@ -58,10 +57,10 @@ let EditOrNew = (props) => {
     let [description, setDescription]  = useState("");
     let [useSatisfaction, setUseSatisfaction]  = useState(false);
     let classes = useStyles();
-
     let request = () => getRequest(isEdit, {id, name, image, description, useSatisfaction});
     return (
         <SimpleModal modalIsOpen={modalIsOpen} toggleModal={toggleModal}>
+     
             <FormGroup onSubmit={()=>handleSend(request())}>
                 <TextField label="Name" onChange={setName}/>
                 <TextField label="Image Link" onChange={setImage}/>
