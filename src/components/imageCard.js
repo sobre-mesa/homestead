@@ -15,6 +15,7 @@ const useStyles = makeStyles({
 
 export default function SectionCard(props) {
   const classes = useStyles();
+
   let { id, name, image, description, children, updateContainer} = props;
   let handleClick = () => {
     fetch(`/lp/id/${id}`, { mode: 'cors' }).then((response) => {
@@ -31,6 +32,7 @@ export default function SectionCard(props) {
       console.log('Fetch Error :-S', err);
     });
   }
+  
   return (
     <Card className={classes.root} onClick={handleClick}>
       <CardActionArea>

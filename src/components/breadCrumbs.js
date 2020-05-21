@@ -19,7 +19,7 @@ export default function BreadCumbs(props) {
               }
               response.json().then((data) => {
                 let container = i > 0 ? { ...data.data.container } : { name: "Home" };
-                props.updateBreadCrumbs({ bc: i, container: { ...container, children: data.data.children } })
+                props.breadCrumbSelected({ bc: i, container: { ...container, children: data.data.children } })
               })
             }
             ).catch(function (err) {
