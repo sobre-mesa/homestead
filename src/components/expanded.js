@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import SimpleModal from './modal'
+import EditOrNew from './editOrNew'
 import EditIcon from '@material-ui/icons/Edit';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
@@ -17,7 +17,6 @@ const gridStyle = {
   width: '100%',
   marginLeft: 'auto',
   marginRight: 'auto',
-  // marginTop: 100,
   minHeight: 500
 };
 const paperStyle = {
@@ -37,7 +36,6 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     paddingLeft: 80,
     paddingRight: 80,
-    // paddingTop: 80,
     paddingBottom: 12,
   }
 }));
@@ -52,7 +50,7 @@ const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs
       </Grid>);
   }
   let cards = children && children.map(getCardFromItem);
-
+                              
   return (
     <>
       <Paper elevation={15} style={paperStyle}>
@@ -80,8 +78,8 @@ const ExpandedContainer = ({ name, notes, children, updateContainer, breadcrumbs
           {cards}
         </Grid>
       </Paper>
-      <SimpleModal modalIsOpen={modalIsOpen} toggleModal={toggleModal} modalType={modalType} />
-    </>
+      <EditOrNew modalIsOpen={modalIsOpen} toggleModal={toggleModal} />
+      </>
   );
 }
 

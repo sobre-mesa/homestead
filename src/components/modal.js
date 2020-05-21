@@ -6,16 +6,16 @@ import Paper from '@material-ui/core/Paper';
 const paperStyle = {
   marginTop: 50,
   padding: 50,
-  width: '70%',
+  width: '30%',
   marginLeft: 'auto',
   marginRight: 'auto',
 };
 
-export default function SimpleModal({ toggleModal, modalIsOpen, modalType }) {
+export default function SimpleModal({ toggleModal, modalIsOpen, children}) {
   const body = (
     <Paper elevation={50} style={paperStyle}>
       <h1>
-        {modalType}
+        {children}
       </h1>
     </Paper>
   );
